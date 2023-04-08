@@ -1,0 +1,23 @@
+name: 'Auto Assign PR Creator'
+description: 'Automatically assigns the pull request creator as the assignee when a new PR is opened.'
+author: 'rmottainfo'
+branding:
+  icon: 'git-pull-request'
+  color: 'orange'
+inputs:
+  pr_url:
+    description: 'Pull Request Link'
+    required: true
+  pr_creator:
+    description: 'Pull Request Creator'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Add PR creator as assignee
+      shell: bash
+      run: |
+        chmod +x ${{ github.action_path }}/assign-pr.sh
+        bash "${{ github.action_path }}/assign-pr.sh" \
+          "${{ inputs.pr_url }}" \
+          "${{ inputs.pr_creator }}"

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -o pipefail
 
 PR_LINK="$1"
 PR_CREATOR="$2"

@@ -26,13 +26,8 @@
 #
 set -o pipefail
 
-PR_LINK="$1"
-PR_CREATOR="$2"
-
-if [[ -z "$PR_LINK" || -z "$PR_CREATOR" ]]; then
-  echo "Usage: $0 <pr_link> <pr_creator>"
-  exit 1
-fi
+PR_LINK="${1:?The Pull Request link is a requirement.}"
+PR_CREATOR="${2:?A valid GitHub username is required.}"
 
 echo "Assigning pull request creator '$PR_CREATOR' to PR: $PR_LINK"
 
